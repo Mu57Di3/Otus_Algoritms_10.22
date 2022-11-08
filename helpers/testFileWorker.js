@@ -47,7 +47,7 @@ class TestFileWorker {
     }
 
     _defaultParser(content){
-        return String.fromCharCode.apply(null, content).trim();
+        return content.trim();
     }
 
     _getFilesList() {
@@ -66,7 +66,7 @@ class TestFileWorker {
                     name: testName,
                 }
             }
-            let content = fs.readFileSync(path.resolve(this.testPath, file));
+            let content = fs.readFileSync(path.resolve(this.testPath, file)).toString();
             content = fileType === "out" ? this.outParser(content) : this.inParser(content);
             testList[testName][fileType]= content;
         });

@@ -10,10 +10,10 @@ describe("test", ()=>{
     const testHelper = new TestFileWorker({
         rootDir: __dirname,
         inParser: (content)=>{
-            return parseInt(String.fromCharCode.apply(null, content).trim(), 10);
+            return parseInt(content, 10);
         },
         outParser: (content)=>{
-            return parseInt(String.fromCharCode.apply(null, content).trim(), 10);
+            return parseInt(content, 10);
         },
     });
     testHelper.readTests();
