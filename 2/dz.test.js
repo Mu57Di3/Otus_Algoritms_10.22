@@ -1,12 +1,12 @@
 /**
- * @file
+ * @file тесты для второй домашней работы
  * Создан Bender 08.11.2022
  */
 
 const TestFileWorker = require("../helpers/testFileWorker");
 const {solveFast} = require("./solve");
 
-describe("test", ()=>{
+describe("Вторая домашняя работа", ()=>{
     const testHelper = new TestFileWorker({
         rootDir: __dirname,
         inParser: (content)=>{
@@ -16,7 +16,6 @@ describe("test", ()=>{
             return BigInt(content);
         },
     });
-    testHelper.readTests();
 
     for (let testItem of testHelper.testList){
         test(testItem.name, ()=>{

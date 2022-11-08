@@ -6,6 +6,9 @@ const path = require("path");
 const fs = require("fs");
 const testFilesFolderName = "tests";
 
+/**
+ * Итератор для списка тестов
+ */
 class IterableTestList extends Object {
     constructor(object) {
         super();
@@ -35,7 +38,17 @@ class IterableTestList extends Object {
     }
 }
 
+/**
+ * Класс читающий и парсящий файлы тестов
+ */
 class TestFileWorker {
+
+    /**
+     * @constructor
+     * @param {string} rootDir - абсолютный путь до файла с тестом
+     * @param {function} inParser - функция которая читает и преобразовывает входные параметры для теста
+     * @param {function} outParser - функция которая читает и преобразовывает контрольные данные
+     */
     constructor({rootDir, inParser, outParser}) {
         this.testPath = path.resolve(rootDir, testFilesFolderName);
         this.testFileTpl = /^test\.(\d{1,2})\.(in|out)$/s;
@@ -43,17 +56,32 @@ class TestFileWorker {
         this.inParser = inParser || this._defaultParser;
         this.outParser = outParser || this._defaultParser;
         this.testList = null;
-
+        this._getFilesList();
+        this._getTestList();
     }
 
+    /**
+     * Функция по умолчанию для обработки данных тестов. Если не указаны параметры  inParser, outParser
+     * @param content
+     * @return {*|string}
+     * @private
+     */
     _defaultParser(content){
         return content.trim();
     }
 
+    /**
+     * Возвращает список файлов в папке с тестом
+     * @private
+     */
     _getFilesList() {
         this.fileList = fs.readdirSync(this.testPath, {encoding:"utf8"}).filter((file) => this.testFileTpl.test(file));
     }
 
+    /**
+     * формирует итерируемы объект со списком тестов
+     * @private
+     */
     _getTestList(){
         const testList = {};
 
@@ -72,11 +100,6 @@ class TestFileWorker {
         });
 
         this.testList = new IterableTestList(testList);
-    }
-
-    readTests() {
-        this._getFilesList();
-        this._getTestList();
     }
 }
 
