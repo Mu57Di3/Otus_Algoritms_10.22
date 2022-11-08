@@ -13,7 +13,7 @@ describe("test", ()=>{
             return parseInt(content, 10);
         },
         outParser: (content)=>{
-            return parseInt(content, 10);
+            return BigInt(content);
         },
     });
     testHelper.readTests();

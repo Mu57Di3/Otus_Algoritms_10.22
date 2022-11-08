@@ -18,7 +18,7 @@ class IterableTestList extends Object {
         let current = keys.shift();
         return {
             next() {
-                if (keys.length) {
+                if (!!current) {
                     const key = current;
                     current = keys.shift();
                     return {
