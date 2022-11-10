@@ -4,9 +4,9 @@
  */
 
 const TestFileWorker = require("../helpers/testFileWorker");
-const {solveFast} = require("./solve");
+const {solveFast} = require("./tickets.js");
 
-describe("Вторая домашняя работа", ()=>{
+describe("Вторая домашняя работа \"Счастливые билетики\"", ()=>{
     const testHelper = new TestFileWorker({
         rootDir: __dirname,
         inParser: (content)=>{
