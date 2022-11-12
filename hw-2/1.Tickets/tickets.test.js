@@ -3,7 +3,7 @@
  * Создан Bender 08.11.2022
  */
 
-const TestFileWorker = require("../helpers/testFileWorker");
+const TestFileWorker = require("../../helpers/testFileWorker");
 const {solveFast} = require("./tickets.js");
 
 describe("Вторая домашняя работа \"Счастливые билетики\"", ()=>{
