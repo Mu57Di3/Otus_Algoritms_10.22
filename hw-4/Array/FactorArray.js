@@ -53,6 +53,32 @@ class FactorArray {
 
         this._array = newArray;
     }
+
+    /**
+     * Удаляет и возвращает удаленный элемент массива по индексу
+     * @param {number} removeIndex - индекс элемента
+     * @return {*}
+     */
+    remove(removeIndex) {
+        const removedValue = this.get(removeIndex);
+        const newArray = new Array(this._array.length - 1 < 0 ? 0 : this._array.length - 1);
+        let indexDelta = 0;
+
+        this._array.forEach((value, index) => {
+            if (value !== undefined) {
+                if (index !== removeIndex) {
+                    newArray[index - indexDelta] = value;
+                } else {
+                    indexDelta = 1;
+                }
+            }
+        })
+
+        this._array = newArray;
+        this._size--;
+
+        return removedValue;
+    }
 }
 
 module.exports = {FactorArray}

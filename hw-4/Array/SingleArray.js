@@ -22,7 +22,7 @@ class SingleArray {
      */
     add(newItem) {
         this._resize()
-        this._array[this.size()-1] = newItem;
+        this._array[this.size() - 1] = newItem;
     }
 
     /**
@@ -39,7 +39,7 @@ class SingleArray {
      * @private
      */
     _resize() {
-        const newArray = new Array(this.size()+1).fill(null);
+        const newArray = new Array(this.size() + 1).fill(null);
 
         this._array.forEach((value, index) => {
             newArray[index] = value;
@@ -47,8 +47,32 @@ class SingleArray {
 
         this._array = newArray;
 
-        //Еще можно так это сильно быстрей
+        //Еще можно так как это сильно быстрей
         //this._array = this._array.concat([null]);
+    }
+
+    /**
+     * Удаляет и возвращает удаленный элемент массива по индексу
+     * @param {number} removeIndex - индекс элемента
+     * @return {*}
+     */
+    remove(removeIndex) {
+        const removedValue = this.get(removeIndex);
+        const newArray = new Array(this.size() - 1 < 0 ? 0 : this.size() - 1).fill(null);
+        let indexDelta = 0;
+
+        this._array.forEach((value, index) => {
+
+            if (index !== removeIndex) {
+                newArray[index - indexDelta] = value;
+            } else {
+                indexDelta = 1;
+            }
+        })
+
+        this._array = newArray;
+
+        return removedValue;
     }
 }
 

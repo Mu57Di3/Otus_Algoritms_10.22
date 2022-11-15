@@ -32,6 +32,18 @@ class NativeArray {
     get(index) {
         return this._array[index];
     }
+
+
+    /**
+     * Удаляет и возвращает удаленный элемент массива по индексу
+     * @param {number} index - индекс элемента
+     * @return {*}
+     */
+    remove(index) {
+        const removedValue = this._array[index];
+        this._array.splice(index, 1);;
+        return removedValue;
+    }
 }
 
 module.exports = {
