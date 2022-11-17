@@ -7,20 +7,12 @@ const {SingleArray} = require("./SingleArray");
 const {VectorArray} = require("./VectorArray");
 const {FactorArray} = require("./FactorArray");
 const {MatrixArray} = require("./MatrixArray");
+const {random} = require("../../helpers/utils");
 
-/**
- * Возвращает случайное целое число в промежутке min/max
- * @param {number} min
- * @param {number} max
- * @return {number}
- */
-function random(min, max) {
-    let rand = min + Math.random() * (max + 1 - min);
-    return Math.floor(rand);
-}
+
 
 const addCount = 100000;
-const removeCount = 10000;//addCount-1;
+const removeCount = 10000;
 
 const NA = new NativeArray();
 const SA = new SingleArray();
